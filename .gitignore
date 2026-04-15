@@ -5,7 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
+<<<<<<< HEAD
 venv/
+=======
+
+>>>>>>> 49e51a4544ba340cc0940ffa2fff3ff672bb25a2
 # Distribution / packaging
 .Python
 build/
