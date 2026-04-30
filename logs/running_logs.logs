@@ -1,1 +1,107 @@
 [2026-04-16 12:55:05,181]:[INFO]: main: Hello World
+[2026-04-27 12:46:53,039]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:46:53,047]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:48:55,986]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:48:55,987]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:49:15,392]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:49:15,395]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:50:53,155]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:50:53,158]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:51:35,719]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:51:35,723]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:52:01,455]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:52:01,471]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:52:01,473]:[INFO]: common: created directory at artifacts
+[2026-04-27 12:52:01,475]:[INFO]: common: created directory at artifacts/prepare_base_model
+[2026-04-27 12:52:44,001]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-27 12:52:44,010]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-27 12:52:44,011]:[INFO]: common: created directory at artifacts
+[2026-04-27 12:52:44,013]:[INFO]: common: created directory at artifacts/prepare_base_model
+[2026-04-27 12:52:58,491]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-27 12:52:58,608]:[WARNING]: config: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[2026-04-27 12:52:58,628]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-28 12:49:22,795]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:49:22,809]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:49:22,812]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:50:09,976]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:50:09,979]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:50:09,981]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:53:46,977]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:53:46,980]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:53:46,981]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:53:46,983]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 12:53:47,349]:[WARNING]: config: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[2026-04-28 12:53:47,349]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 12:54:37,757]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:54:37,759]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:54:37,761]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:54:37,763]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 12:54:37,933]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 12:55:09,275]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:55:09,278]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:55:09,280]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:55:09,281]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 12:55:09,453]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 12:56:59,442]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:56:59,444]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:56:59,446]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:56:59,447]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 12:56:59,671]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 12:57:30,042]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 12:57:30,045]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 12:57:30,048]:[INFO]: common: created directory at artifacts
+[2026-04-28 12:57:30,049]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 12:57:30,217]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 13:04:16,758]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 13:04:16,760]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 13:04:16,763]:[INFO]: common: created directory at artifacts
+[2026-04-28 13:04:16,764]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 13:04:16,930]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 13:07:55,285]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 13:07:55,287]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 13:07:55,289]:[INFO]: common: created directory at artifacts
+[2026-04-28 13:07:55,290]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 13:07:55,467]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 13:08:11,308]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 13:08:11,311]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 13:08:11,312]:[INFO]: common: created directory at artifacts
+[2026-04-28 13:08:11,314]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 13:08:11,601]:[WARNING]: config: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[2026-04-28 13:08:11,601]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 13:12:04,235]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 13:12:04,237]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 13:12:04,238]:[INFO]: common: created directory at artifacts
+[2026-04-28 13:12:04,240]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 13:12:04,475]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 13:17:45,170]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-28 13:33:43,333]:[INFO]: main: Starting data ingestion stage
+[2026-04-28 13:33:43,333]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 13:33:43,333]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 13:33:43,333]:[INFO]: common: created directory at artifacts
+[2026-04-28 13:33:43,333]:[INFO]: common: created directory at artifacts/data_ingestion
+[2026-04-28 13:33:43,333]:[INFO]: data_ingestion: Downloading data from https://drive.google.com/drive/folders/1V5EomboE3aJGHjTr9pyrjdO3fWps5zNS?usp=sharing into artifacts/data_ingestion
+[2026-04-28 14:31:22,870]:[INFO]: data_ingestion: Downloaded data into artifacts/data_ingestion
+[2026-04-28 14:31:22,871]:[INFO]: main: Finished data ingestion stage
+[2026-04-28 14:31:22,871]:[INFO]: main: *******************
+[2026-04-28 14:31:22,871]:[INFO]: main: >>>>> stage prepare base model started <<<<<<
+[2026-04-28 14:31:22,873]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 14:31:22,875]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 14:31:22,876]:[INFO]: common: created directory at artifacts
+[2026-04-28 14:31:22,877]:[INFO]: common: created directory at artifacts/prepare_base_model
+[2026-04-28 14:31:23,240]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-28 14:31:23,369]:[WARNING]: config: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[2026-04-28 14:31:23,408]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-28 14:31:23,503]:[INFO]: main: >>>>> stage prepare base model completed <<<<<<
+
+x==========x
+[2026-04-28 14:31:23,503]:[INFO]: main: ****************
+[2026-04-28 14:31:23,503]:[INFO]: main: >>>>>> stage MODEL_TRAINER started <<<<<<
+[2026-04-28 14:31:23,503]:[INFO]: common: file config\config.yaml loaded successfully
+[2026-04-28 14:31:23,503]:[INFO]: common: file params.yaml loaded successfully
+[2026-04-28 14:31:23,503]:[INFO]: common: created directory at artifacts
+[2026-04-28 14:31:23,503]:[INFO]: common: created directory at artifacts\training
+[2026-04-28 14:31:23,666]:[WARNING]: saving_utils: Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+[2026-04-28 14:36:16,239]:[WARNING]: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+[2026-04-28 14:36:16,399]:[INFO]: main: >>>>>> stage MODEL_TRAINER completed <<<<<<
+
+x==========x
