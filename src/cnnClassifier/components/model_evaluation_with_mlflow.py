@@ -1,6 +1,7 @@
 import tensorflow as tf
 from pathlib import Path
 import mlflow
+import os
 import mlflow.keras
 from urllib.parse import urlparse
 from cnnClassifier.entity.config_entity import EvaluationConfig 
@@ -28,11 +29,12 @@ class Evaluation:
         )
 
         self.valid_generator = valid_datagenerator.flow_from_directory(
-            directory=self.config.training_data,
+            directory=os.path.join(self.config.training_data, "valid"),
             shuffle=False,
-            class_mode="categorical",
+            class_mode="binary",
             **dataflow_kwargs
         )
+        print(self.valid_generator.class_indices)
 
     def log_into_mlflow(self):   # ✅ moved outside and fixed indentation
         mlflow.set_tracking_uri(self.config.mlflow_uri)
@@ -52,8 +54,18 @@ class Evaluation:
     def load_model(path: Path) -> tf.keras.Model:
         return tf.keras.models.load_model(path)
 
+
+
     def evaluation(self):
         self.model = self.load_model(self.config.path_of_model)
+
+        
+        self.model.compile(
+            optimizer="adam",
+            loss="binary_crossentropy",
+            metrics=["accuracy"]
+        )
+
         self._valid_generator()
         self.score = self.model.evaluate(self.valid_generator)
         self.save_score()

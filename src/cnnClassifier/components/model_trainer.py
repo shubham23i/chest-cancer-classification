@@ -1,6 +1,7 @@
 from cnnClassifier.entity.config_entity import TrainingConfig
 from pathlib import Path
 import tensorflow as tf
+import os
 
 
 class Training:
@@ -13,60 +14,37 @@ class Training:
         )
         self.model.compile(
             optimizer=tf.keras.optimizers.Adam(),
-            loss="categorical_crossentropy",
+            loss="binary_crossentropy",
             metrics=["accuracy"]
         )
 
     def train_valid_generator(self):
-        datagenerator_kwargs=dict(
-            rescale=1./255,
-            validation_split=0.20
+        train_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
+            rescale=1./255
         )
-        dataflow_kwargs=dict(
+
+        valid_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
+            rescale=1./255
+        )
+
+        self.train_generator = train_datagenerator.flow_from_directory(
+            directory=os.path.join(self.config.training_data, "train"),
             target_size=self.config.params_image_size[:-1],
             batch_size=self.config.params_batch_size,
-            interpolation="bilinear"
-        )
-        valid_datagenerator=tf.keras.preprocessing.image.ImageDataGenerator(
-            **datagenerator_kwargs
-        )
-        self.valid_generator=valid_datagenerator.flow_from_directory(
-            directory=self.config.training_data,
-            subset="validation",
-            shuffle=False,
-            **dataflow_kwargs
-        )
-        if self.config.params_is_augmentation:
-            train_datagenerator=tf.keras.preprocessing.image.ImageDataGenerator(
-
-    
-                rotation_range=0,
-                width_shift_range=0.0,
-                height_shift_range=0.0,
-                
-                shear_range=0.0,
-                zoom_range=0.0,
-                
-                horizontal_flip=False,
-                **datagenerator_kwargs
-            )
-        else:
-            train_datagenerator=valid_datagenerator
-        
-        self.train_generator=train_datagenerator.flow_from_directory(
-            directory=self.config.training_data,
-            subset="training",
-            shuffle=True,
-            **dataflow_kwargs
+            class_mode="binary",
+            shuffle=True
         )
 
-    @staticmethod
-    def save_model(path:Path, model=tf.keras.Model):
-        model.save(path)
-    
+        self.valid_generator = valid_datagenerator.flow_from_directory(
+            directory=os.path.join(self.config.training_data,"valid"),
+            target_size=self.config.params_image_size[:-1],
+            batch_size=self.config.params_batch_size,
+            class_mode="binary",
+            shuffle=False
+        )
     def train(self):
         self.steps_per_epoch=self.train_generator.samples//self.train_generator.batch_size
-        self.validation_steps=self.train_generator.samples//self.train_generator.batch_size
+        self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
         self.model.fit(
             self.train_generator,
             epochs=self.config.params_epochs,
@@ -74,8 +52,5 @@ class Training:
             validation_steps=self.validation_steps,
             validation_data=self.valid_generator,
         )
-        self.save_model(
-            path=self.config.trained_model_path,
-            model=self.model
-        )
+        self.model.save("artifacts/training/model.keras")
         

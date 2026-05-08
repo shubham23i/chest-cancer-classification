@@ -3,6 +3,7 @@ from cnnClassifier.utils.common import read_yaml, create_directory
 from cnnClassifier.entity.config_entity import DataIngestionConfig,PrepareBaseModelConfig,TrainingConfig
 from pathlib import Path
 import os
+from cnnClassifier.entity.config_entity import EvaluationConfig
 
 class ConfigurationManager:
     def __init__(
@@ -40,7 +41,7 @@ class ConfigurationManager:
             params_image_size=self.params.IMAGE_SIZE,
             params_learning_rate=self.params.LEARNING_RATE,
             params_include_top=self.params.INCLUDE_TOP,
-            params_weight=self.params.WEIGHT,
+            params_weight=self.params.WEIGHTS,
             params_classes=self.params.CLASSES,
 
 
@@ -52,7 +53,7 @@ class ConfigurationManager:
         training=self.config.training
         prepare_base_model=self.config.prepare_base_model
         params=self.params
-        training_data=os.path.join(self.config.data_ingestion.root_dir, "chest-ct-scan-image")
+        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "Data")
         create_directory([
             Path(training.root_dir)
         ])
@@ -67,3 +68,12 @@ class ConfigurationManager:
             params_image_size=params.IMAGE_SIZE,
         )
         return training_config
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        return EvaluationConfig(
+            path_of_model="artifacts/training/model.keras",
+            training_data="artifacts/data_ingestion/data/Data",
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE,
+        )

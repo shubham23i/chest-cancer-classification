@@ -9,6 +9,10 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
+from pathlib import Path
+
+CONFIG_FILE_PATH = Path("config/config.yaml")
+PARAMS_FILE_PATH = Path("params.yaml")
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:

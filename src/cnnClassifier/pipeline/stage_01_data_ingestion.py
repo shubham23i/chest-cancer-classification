@@ -2,25 +2,27 @@ from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.data_ingestion import DataIngestion
 from cnnClassifier import logger
 
-stage_name="data ingestion stage"
+stage_name = "data ingestion stage"
 
 class data_ingestion_pipeline:
     def __init__(self):
         pass
     
     def main(self):
-        config=ConfigurationManager()
-        data_ingestion_config=config.get_data_ingestion_config()
-        data_ingestion=DataIngestion(config=data_ingestion_config)
-        data_ingestion.download_file()
+        config = ConfigurationManager()
+        data_ingestion_config = config.get_data_ingestion_config()
+        data_ingestion = DataIngestion(config=data_ingestion_config)
         
-           
+        data_ingestion.download_file()
+        data_ingestion.extract_zip_file()
+        data_ingestion.create_binary_dataset() 
+
 if __name__ == "__main__":
     try:
         logger.info(f"Starting {stage_name}")
-        obj=data_ingestion_pipeline()
+        obj = data_ingestion_pipeline()
         obj.main()
         logger.info(f"Finished {stage_name}")
     except Exception as e:
         logger.exception(e)
-        raise e 
+        raise e
