@@ -1,9 +1,8 @@
 FROM python:3.11-slim
 
-# Set the working directory
 WORKDIR /app
 
-# Install system dependencies (needed for some heavy libraries like pandas/scipy)
+# Install system dependencies required for heavy math libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
@@ -11,17 +10,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Upgrade pip
 RUN pip install --no-cache-dir --upgrade pip
 
-# Copy only requirements to leverage Docker layer caching
+# Step A: Install external requirements first (for build speed)
 COPY requirements.txt .
-
-# Install Python dependencies
+# Ensure you removed "-e ." from your requirements.txt file!
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
+# Step B: Copy your project files (including the new setup.py)
 COPY . .
 
-# Expose the Flask port
+# Step C: Install your local code as a package
+# This makes "from cnnClassifier..." work globally in the container
+RUN pip install -e .
+
 EXPOSE 5000
 
-# Run the application
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
