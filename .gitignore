@@ -7,7 +7,22 @@ research/
 # C extensions
 *.so
 venv/
-artifacts/
+venv/
+new_env/
+__pycache__/
+*.pyc
+
+artifacts/data_ingestion/data/
+artifacts/data_ingestion/data.zip
+artifacts/data_ingestion/
+artifacts/prepare_base_model/
+
+artifacts/prepare_base_model/base_model.h5
+artifacts/prepare_base_model/base_model_updated.h5
+
+
+.dvc/
+.mlflow/
 research/
 
 # Distribution / packaging
