@@ -1,51 +1,83 @@
 import os
 import numpy as np
-import tensorflow as tf
-from keras.models import load_model
-from keras.utils import load_img, img_to_array
+from tensorflow.keras.models import load_model
+from tensorflow.keras.utils import load_img, img_to_array
 
 
 class PredictionPipeline:
+
     def __init__(self, filename):
+
         self.filename = filename
 
-        # Absolute model path
-        self.model_path = os.path.abspath(
-            os.path.join("artifacts", "training", "model.keras")
+        self.model_path = os.path.join(
+            os.getcwd(),
+            "artifacts",
+            "training",
+            "model.keras"
         )
 
-        print("Loading model from:", self.model_path)
+        print("MODEL PATH:", self.model_path)
 
         if os.path.exists(self.model_path):
+            print("✅ Model file exists")
             self.model = load_model(self.model_path)
-            print("Model loaded successfully")
+            print("✅ Model loaded")
         else:
+            print("❌ Model file NOT found")
             self.model = None
-            print("Model file not found")
 
     def predict(self):
+
         try:
+
+            print("Image path:", self.filename)
+
+            if not os.path.exists(self.filename):
+                return [{"image": "Image file not found"}]
+
             if self.model is None:
-                return [{"image": "Model file not found"}]
+                return [{"image": "Model not loaded"}]
 
+            # Load image
             img = load_img(self.filename, target_size=(224, 224))
+
+            # Convert image to array
             img_array = img_to_array(img)
+
+            print("Original shape:", img_array.shape)
+
+            # Normalize
+            img_array = img_array / 255.0
+
+            # Expand dimensions
             img_array = np.expand_dims(img_array, axis=0)
-            img_array = img_array.astype("float32") / 255.0
 
-            predictions = self.model(img_array, training=False)
+            print("Final input shape:", img_array.shape)
 
-            print("Raw predictions:", predictions)
+            # Prediction
+            predictions = self.model.predict(img_array)
 
-            score = predictions.numpy()[0][0]
+            print("Raw Predictions:", predictions)
 
-            if score > 0.5:
-                prediction = "Normal"
-            else:
-                prediction = "Adenocarcinoma Cancer"
+            # MULTICLASS SUPPORT
+            class_names = [
+                "Adenocarcinoma Cancer",
+                "Large Cell Carcinoma Cancer",
+                "Normal",
+                "Squamous Cell Carcinoma Cancer"
+            ]
+
+            predicted_class = np.argmax(predictions, axis=1)[0]
+
+            prediction = class_names[predicted_class]
+
+            print("Predicted class:", prediction)
 
             return [{"image": prediction}]
 
         except Exception as e:
-            print("🔥 Prediction error:", str(e))
+
+            print("🔥 PREDICTION ERROR:", str(e))
+
             return [{"image": str(e)}]
