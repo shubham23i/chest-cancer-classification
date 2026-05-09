@@ -2,12 +2,21 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# 1. Upgrade pip first
+RUN pip install --no-cache-dir --upgrade pip
+
+# 2. Copy only the files needed for installation 
+# This leverages Docker's cache so you don't re-install packages on every code change.
 COPY requirements.txt .
+# If you use setup.py or pyproject.toml, uncomment the next line:
+# COPY setup.py* pyproject.toml* . 
 
-RUN pip install --upgrade pip
-
+# 3. Install dependencies
+# If line 20 of requirements.txt is ".", this will now work IF setup.py/pyproject.toml exists.
+# Otherwise, delete that line from your requirements.txt.
 RUN pip install --no-cache-dir -r requirements.txt
 
+# 4. Copy the rest of the application code
 COPY . .
 
 EXPOSE 5000
