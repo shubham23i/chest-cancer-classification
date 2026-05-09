@@ -10,9 +10,23 @@ class PredictionPipeline:
 
     def predict(self):
 
-        model = tf.keras.models.load_model(
-            os.path.join("artifacts", "training", "model.keras")
+        # DEBUGGING START
+        print("Current Working Directory:", os.getcwd())
+
+        model_path = os.path.join(
+            "artifacts",
+            "training",
+            "model.keras"
         )
+
+        print("Model Path:", model_path)
+        print("Model Exists:", os.path.exists(model_path))
+
+        print("Uploaded File:", self.filename)
+        print("File Exists:", os.path.exists(self.filename))
+        # DEBUGGING END
+
+        model = tf.keras.models.load_model(model_path)
 
         test_image = load_img(
             self.filename,
@@ -26,6 +40,9 @@ class PredictionPipeline:
         test_image = np.expand_dims(test_image, axis=0)
 
         result = model.predict(test_image)
+
+        print("Prediction:", result)
+        print("Shape:", result.shape)
 
         if result[0][0] > 0.5:
             prediction = "normal"
