@@ -1,0 +1,7 @@
+venv
+new_env/
+__pycache__
+*.pyc
+.git
+.dvc
+artifacts/data_ingestion/data
