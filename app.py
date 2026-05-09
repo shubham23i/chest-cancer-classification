@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import os
 from flask_cors import CORS, cross_origin
-from cnnClassifier.utils.common import decodeImage
+from cnnClassifier.utils.common import decode_image
 from cnnClassifier.pipeline.prediction import PredictionPipeline
 
 # Set environment variables to reduce TensorFlow memory footprint
@@ -28,7 +28,7 @@ def home():
 @cross_origin()
 def predictRoute():
     image = request.json['image']
-    decodeImage(image, clApp.filename)
+    decode_image(image, clApp.filename)
     
     # Use the pre-initialized classifier
     result = clApp.classifier.predict()
