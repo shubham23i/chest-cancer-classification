@@ -1,66 +1,48 @@
 import os
 import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import load_img, img_to_array
+from keras.models import load_model
+from keras.utils import load_img, img_to_array
+
+# LOAD MODEL ONLY ONCE
+MODEL_PATH = os.path.join(
+    os.getcwd(),
+    "artifacts",
+    "training",
+    "model.keras"
+)
+
+print("Loading model from:", MODEL_PATH)
+import tensorflow as tf
+
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
+
+model = load_model(MODEL_PATH)
+
+print("✅ Model loaded successfully")
 
 
 class PredictionPipeline:
 
     def __init__(self, filename):
-
         self.filename = filename
-
-        self.model_path = os.path.join(
-            os.getcwd(),
-            "artifacts",
-            "training",
-            "model.keras"
-        )
-
-        print("MODEL PATH:", self.model_path)
-
-        if os.path.exists(self.model_path):
-            print("✅ Model file exists")
-            self.model = load_model(self.model_path)
-            print("✅ Model loaded")
-        else:
-            print("❌ Model file NOT found")
-            self.model = None
 
     def predict(self):
 
         try:
 
-            print("Image path:", self.filename)
-
-            if not os.path.exists(self.filename):
-                return [{"image": "Image file not found"}]
-
-            if self.model is None:
-                return [{"image": "Model not loaded"}]
-
-            # Load image
             img = load_img(self.filename, target_size=(224, 224))
 
-            # Convert image to array
             img_array = img_to_array(img)
 
-            print("Original shape:", img_array.shape)
-
-            # Normalize
             img_array = img_array / 255.0
 
-            # Expand dimensions
             img_array = np.expand_dims(img_array, axis=0)
 
-            print("Final input shape:", img_array.shape)
+            predictions = model.predict(img_array)
 
-            # Prediction
-            predictions = self.model.predict(img_array)
+            print("Predictions:", predictions)
 
-            print("Raw Predictions:", predictions)
-
-            # MULTICLASS SUPPORT
             class_names = [
                 "Adenocarcinoma Cancer",
                 "Large Cell Carcinoma Cancer",
@@ -70,14 +52,12 @@ class PredictionPipeline:
 
             predicted_class = np.argmax(predictions, axis=1)[0]
 
-            prediction = class_names[predicted_class]
+            result = class_names[predicted_class]
 
-            print("Predicted class:", prediction)
-
-            return [{"image": prediction}]
+            return [{"image": result}]
 
         except Exception as e:
 
-            print("🔥 PREDICTION ERROR:", str(e))
+            print("🔥 Prediction Error:", str(e))
 
             return [{"image": str(e)}]
