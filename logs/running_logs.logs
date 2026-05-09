@@ -1913,3 +1913,15 @@ AttributeError: 'str' object has no attribute 'predict'
 [2026-05-09 13:13:40,488]:[INFO]: stage_04_model_evaluation: >>>>>> stage Model Evaluation completed <<<<<<
 
 x==========x
+[2026-05-09 16:29:14,916]:[INFO]: _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.5:5000
+[2026-05-09 16:29:14,917]:[INFO]: _internal: [33mPress CTRL+C to quit[0m
+[2026-05-09 16:29:24,036]:[INFO]: _internal: 127.0.0.1 - - [09/May/2026 16:29:24] "GET / HTTP/1.1" 200 -
+[2026-05-09 16:29:24,220]:[INFO]: _internal: 127.0.0.1 - - [09/May/2026 16:29:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2026-05-09 16:29:28,178]:[WARNING]: config: TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[2026-05-09 16:29:30,865]:[INFO]: _internal: 127.0.0.1 - - [09/May/2026 16:29:30] "POST /predict HTTP/1.1" 200 -
+[2026-05-09 16:29:31,389]:[WARNING]: module_wrapper: From C:\Users\Shubham Joshi\Desktop\chest-cancer-classification\new_env\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+[2026-05-09 16:29:31,547]:[INFO]: _internal: 127.0.0.1 - - [09/May/2026 16:29:31] "POST /predict HTTP/1.1" 200 -
