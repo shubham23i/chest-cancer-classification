@@ -2,24 +2,19 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies required for heavy math libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip
 RUN pip install --no-cache-dir --upgrade pip
 
-# Step A: Install external requirements first (for build speed)
 COPY requirements.txt .
-# Ensure you removed "-e ." from your requirements.txt file!
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Step B: Copy your project files (including the new setup.py)
 COPY . .
 
-# Step C: Install your local code as a package
-# This makes "from cnnClassifier..." work globally in the container
+ENV PYTHONPATH=/app
+
 RUN pip install -e .
 
 EXPOSE 5000
