@@ -1,4 +1,29 @@
-def predict(self):
+import os
+import numpy as np
+import tensorflow as tf
+from keras.models import load_model
+from keras.utils import load_img, img_to_array
+
+
+class PredictionPipeline:
+    def __init__(self, filename):
+        self.filename = filename
+
+        # Absolute model path
+        self.model_path = os.path.abspath(
+            os.path.join("artifacts", "training", "model.keras")
+        )
+
+        print("Loading model from:", self.model_path)
+
+        if os.path.exists(self.model_path):
+            self.model = load_model(self.model_path)
+            print("Model loaded successfully")
+        else:
+            self.model = None
+            print("Model file not found")
+
+    def predict(self):
     try:
         if self.model is None:
             return [{"image": "Model file not found"}]
