@@ -3,6 +3,8 @@ from flask_cors import CORS, cross_origin
 import os
 import base64
 import tensorflow as tf
+import keras
+import tensorflow as tf
 from cnnClassifier.pipeline.prediction import PredictionPipeline
 
 app = Flask(__name__)
@@ -12,7 +14,7 @@ CORS(app)
 model_path = os.path.join("artifacts", "training", "model.keras")
 model = None
 if os.path.exists(model_path):
-    model = tf.keras.models.load_model(model_path)
+    model = keras.models.load_model(model_path)
     print("Model loaded successfully.")
 else:
     print(f"Model file not found at {model_path}")
