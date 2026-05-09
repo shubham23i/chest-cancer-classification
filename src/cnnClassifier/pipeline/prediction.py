@@ -1,37 +1,36 @@
 import os
 import numpy as np
 import tensorflow as tf
+from keras.models import load_model
 from keras.utils import load_img, img_to_array
 
 class PredictionPipeline:
     def __init__(self, filename):
         self.filename = filename
-        
+        # Load model once during initialization
         self.model_path = os.path.join("artifacts", "training", "model.keras")
+        if os.path.exists(self.model_path):
+            self.model = load_model(self.model_path)
+        else:
+            self.model = None
 
     def predict(self):
-        
-        if not os.path.exists(self.model_path):
-            return f"Error: Model file not found at {self.model_path}"
+        if self.model is None:
+            return [{"image": "Model file not found"}]
 
-        
-        model = tf.keras.models.load_model(self.model_path)
+        # Preprocessing
+        img = load_img(self.filename, target_size=(224, 224))
+        img_array = img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array = img_array.astype('float32') / 255.0
 
-        test_image = load_img(self.filename, target_size=(224, 224))
-        test_image = img_to_array(test_image)
-        
-        
-        test_image = test_image.astype('float32') / 255.0
-        test_image = np.expand_dims(test_image, axis=0)
+        # Inference - Using __call__ for lower memory overhead
+        predictions = self.model(img_array, training=False)
+        score = predictions[0][0]
 
-        result = model.predict(test_image)
-
-        
-        tf.keras.backend.clear_session()
-
-        if result[0][0] > 0.5:
-            prediction = "normal"
+        if score > 0.5:
+            prediction = 'Normal'
         else:
-            prediction = "carcinoma"
+            prediction = 'Adenocarcinoma Cancer'
 
-        return prediction
+        return [{"image": prediction}]
